@@ -11,6 +11,11 @@
       <tr>
         <td><%= image_tag user.get_profile_image(50,50) %></td>
         <td><%= user.name %></td>
+
+
+        
+
+
         <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
       </tr>
     <% end %>
