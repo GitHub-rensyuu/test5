@@ -1,24 +1,35 @@
 
-<div class="cover-user-index">
-  <div class="container">
-    <div class="row justify-content-center">
-      <h1 class="font-weight-normal mt-5 mb-5">Follow User</h1>
-    </div>
-    <div class="row justify-content-center">
-      <% @users.each do |user| %>
-      <div class="one-post card w-100">
-        <%= link_to user_path(user) do %>
-        <p class="caption h4"><%= user.name %></p>
-        <div class="d-flex">
-          <%= image_tag user.get_profile_image(100,100), fallback: "no_image.png", class: "mb-3 mt-3 ml-3 profile-img" %>
-          <!--%= attachment_image_tag @user, :profile_image, size: '50x50', fallback: "no_image.png", class: "mb-3 mt-3 ml-3 profile-img" %>-->
-          <!--<h4 class="ml-5">%= user.profile %></h4>-->
-        </div>
+<div class="container">
+    <div class="row">
+      <div class='col-md-12'>
 
-        <% end %>
+        <table class='table table-hover table-inverse'>
+          <h1>Follow User</h1>
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <% @users.each do |user| %>
+
+                  <td><%= image_tag user.get_profile_image(30,30) %></td>
+                  <td><%= user.name %></td>
+                  <td>フォロー数:<%= user.following_user.count %></td>
+                  <td>フォロワー数:<%= user.follower_user.count %></td>
+                  <td><%= link_to "Show",user_path(user) %></td>
+
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
-      <% end %>
     </div>
     <%= paginate @users %>
   </div>
-</div>

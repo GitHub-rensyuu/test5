@@ -1,20 +1,35 @@
 <table class='table'>
-  <!--size:'100x100'-->
+  <!--size:'10D0x100'-->
   <tr><%= image_tag user.get_profile_image(100,100) %></tr>
   <tr>
 	  <th>name</th>
 	  <th><%= user.name %></th>
+
   </tr>
   <tr>
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
 
   </tr>
+  <tr>
+    <th>follows</th>
+    <th><%= link_to user.following_user.count, follows_user_path(user) %></th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th><%= link_to user.follower_user.count, followers_user_path(user) %></th>
+  </tr>
+
 
 </table>
 
-<div class='row'>
-  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
-    <i class="fas fa-user-cog"></i>
-  <% end %>
-</div>
+<!--本人の時のみプロフフィール編集ボタン表示にする-->
+<% if current_user == @user %>
+  <div class='row'>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+<% end %>
+
+
