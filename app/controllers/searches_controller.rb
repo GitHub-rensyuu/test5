@@ -23,28 +23,30 @@ class SearchesController < ApplicationController
         User.where(name: content)
       # 選択した検索方法がが前方一致だったら
       elsif method == "forward_match"
-        User.where("name LIKE?", '%'+content+'%')
+        User.where("name LIKE?", "#{content}%")
       # 選択した検索方法がが後方一致だったら
       elsif method == "backward_match"
-        User.where("name LIKE?", '%'+content+'%')
+        User.where("name LIKE?", "%#{content}")
       # 選択した検索方法がが部分一致だったら
       elsif method == "partial_match"
-        User.where('name LIKE ?', '%'+content+'%')
+        User.where('name LIKE ?', "%#{content}%")
       end
 
     # 選択したモデルbookだったら
     elsif model == 'book'
       if method == 'perfect_match'
-        Book.where(name: content)
+        Book.where(title: content)
       elsif method == "forward_match"
-        Book.where("name LIKE?", '%'+content+'%')
+        Book.where("title LIKE?", "#{content}%")
       elsif method == "backward_match"
-        Book.where("name LIKE?", '%'+content+'%')
+        Book.where("title LIKE?", "%#{content}")
       elsif method == "partial_match"
-        Book.where('name LIKE ?', '%'+content+'%')
+        Book.where('title LIKE ?', "%#{content}%")
       end
     end
 
   end
 
 end
+
+# '%'+content+'%'
