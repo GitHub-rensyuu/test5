@@ -1,3 +1,6 @@
-
+<!--変更前の内容を確認-->
+console.log("<%= j(render "favorites/favorite", book: @book) %>")
 $('#favorite_buttons_<%= @book.id %>').html("<%= j(render "favorites/favorite", book: @book) %>");
 $('#favorite_buttons2_<%= @book.id %>').html("<%= j(render "favorites/favorite2", book: @book) %>");
+<!--変更後の内容を確認-->
+console.log($('#favorite_buttons_<%= @book.id %>').html());

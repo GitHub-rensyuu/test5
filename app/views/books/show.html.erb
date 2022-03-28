@@ -25,12 +25,11 @@
 
           <!--ajaxで変更したい箇所にidを付ける-->
           <!--<div id="favorite_buttons2">-->
-          <div id="favorite_buttons2_%= book.id %>">
-            <%= render "favorites/favorite2", book: book %>
-          </div>
+          <td id="favorite_buttons2_<%= @book.id %>">
+            <%= render "favorites/favorite2", book: @book %>
+          </td>
 
           <td><p>コメント件数：<%= @book.book_comments.count %></p></td>
-
 
         </tr>
         <% @book.book_comments.each do |book_comment| %>
