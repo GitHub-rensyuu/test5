@@ -1,0 +1,26 @@
+
+<!--テーブルタグをしっかり書かないと読み込んでくれない-->
+<tr>
+  <td>
+    <p>コメント件数：<%= book.book_comments.count %></p>
+  </td>
+</tr>
+
+<% book.book_comments.each do |book_comment| %>
+  <tr>
+    <td>
+      <p>
+        <%= image_tag book_comment.user.get_profile_image(100,100) %><br>
+        <%= link_to book_comment.user.name, book.user, remote: true %>
+      </p>
+    </td>
+    <td>
+      <%= book_comment.comment %>
+    </td>
+    <% if book_comment.user == current_user %>
+      <td>
+        <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %>
+      </td>
+    <% end %>
+  </tr>
+<% end %>

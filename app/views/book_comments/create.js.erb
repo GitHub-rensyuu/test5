@@ -1,0 +1,12 @@
+
+
+
+<!--$('#comment_buttons1_< %= @book.id %>').html("< %= j(render "comments/comment1", book: @book) %>");-->
+<!--$("textarea").val('');-->
+
+<!--console.logでrubyの中身を呼び出そうとするとエラー-->
+console.log("<%= j(render "book_comments/comment2", book: @book ) %>");
+console.log(<%= @book.id %>);
+
+$('#comment_buttons2_<%= @book.id %>').html("<%= j(render "book_comments/comment2", book: @book ) %>");
+$("textarea").val('');
