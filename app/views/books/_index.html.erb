@@ -28,9 +28,13 @@
         <!--ajaxで変更したい箇所にidを付ける-->
         <!--コメント件数表示-->
         <!--<td><span>< %= link_to "#{book.book_comments.count} コメント", book_path(book.id), class:"text-dark" %></span></td>-->
-        <td id="comment_buttons1_<%= book.id %>">
-          <%= render "book_comments/comment1", book: book %>
-        </td>
+
+
+<td><span><%= link_to "#{book.book_comments.count} コメント", book_path(book.id), class:"text-dark" %></span></td>
+
+        <!--<td id="comment_buttons1_<%= book.id %>">-->
+        <!--  < %= render "book_comments/comment1", book: book %>-->
+        <!--</td>-->
       </tr>
     <% end %>
   </tbody>

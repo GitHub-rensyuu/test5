@@ -1,5 +1,5 @@
 
 console.log("<%= j(render "favorites/favorite", book: @book) %>")
 $('#favorite_buttons_<%= @book.id %>').html("<%= j(render "favorites/favorite", book: @book) %>");
-$('#favorite_buttons2_<%= @book.id %>').html("<%= j(render "favorites/favorite2", book: @book) %>");
+<!--$('#favorite_buttons2_<　%= @book.id %>').html("<　%= j(render "favorites/favorite2", book: @book) %>");-->
 console.log($('#favorite_buttons_<%= @book.id %>').html());

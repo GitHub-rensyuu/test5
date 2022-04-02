@@ -25,8 +25,8 @@
 
           <!--ajaxで変更したい箇所にidを付ける-->
           <!--<div id="favorite_buttons2">-->
-          <td id="favorite_buttons2_<%= @book.id %>">
-            <%= render "favorites/favorite2", book: @book %>
+          <td id="favorite_buttons_<%= @book.id %>">
+            <%= render "favorites/favorite", book: @book %>
           </td>
 
         </tr>
