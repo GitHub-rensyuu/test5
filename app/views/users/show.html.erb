@@ -12,3 +12,42 @@
     </div>
   </div>
 </div>
+
+<div class = "table_width">
+   <table class="table table-bordered">
+    <thead>
+     <tr>
+      <th>今日の投稿数</th>
+      <th>前日の投稿数</th>
+      <th>前日比</th>
+      <th>今週の投稿数の合計</th>
+      <th>先週の投稿数の合計</th>
+      <th>先週比</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+     　<td><%= @today_book.count %></td>
+     　<td><%= @yesterday_book.count %></td>
+     　<td>
+       <% if @yesterday_book.count == 0 %>
+        前日の投稿はありません
+       <% else %>
+       　<% @the_day_before =   @today_book.count / @yesterday_book.count.to_f  %>
+       　<%= (@the_day_before * 100).round %>
+       <% end %>
+      </td>
+      <td><%= @week_book.count %></td>
+      <td><%= @week2_book.count %></td>
+      <td>
+       <% if @week2_book.count == 0 %>
+        先週の投稿はありません
+       <% else %>
+       　<% @the_week_before =   @week_book.count / @week2_book.count.to_f  %>
+       　<%= (@the_week_before * 100).round %>
+       <% end %>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+</div>
