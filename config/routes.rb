@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'groups/show'
+  get 'groups/edit'
+  get 'groups/new'
+  get 'groups/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # 3.deviseが最初に来てない
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index,:show,:edit,:update]
+  resources :groups, except: [:destroy]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
