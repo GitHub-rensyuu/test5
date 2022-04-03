@@ -11,7 +11,6 @@
   		<table class='table'>
   		  <tr>
           <td><%= link_to(@book.user) do %>
-          <!--size:"100x100"-->
             <%= image_tag @book.user.get_profile_image(100,100) %><br>
             <%= @book.user.name %>
             <% end %>
@@ -19,9 +18,30 @@
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
           <% if @book.user_id == current_user.id %>
-            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
+          <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
           <% end %>
+          <td>
+              <!--~略~-->
+              <div class="relative-book-rate">
+                <span>評価：</span>
+                <span id="star-rate-<%= @book.id %>"></span>
+                <script>
+                  $('#star-rate-<%= @book.id %>').raty({
+                    size: 36,
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    half: true,   # 星半分表示
+                    readOnly: true,   # 読み取り専用
+                    score: <%= @book.rate %>,   # 星評価の表示
+                  });
+                </script>
+                <%= @book.rate %>
+              </div>
+              <!--~略~-->
+
+          </td>
 
 
         </tr>
