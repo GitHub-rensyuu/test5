@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# 0.22user→0.21user並行処理で僅かに早くなる
+# require 'parallel'
+
+# ActiveRecordを使ってるから遅い。SQLの直打ちで書くと早くなるらしい。
+
+for n in "a".."d" do
+  User.create!(
+      email: "#{n}@#{n}",
+      name: "#{n}" * 3 ,
+      password: "#{n}" * 6
+    )
+end

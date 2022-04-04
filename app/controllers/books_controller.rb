@@ -5,6 +5,8 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     @book_comment = BookComment.new
+    # tweet詳細ページにアクセスするとPV数が1つ増える。
+    impressionist(@book, nil, unique: [:ip_address])
   end
 
   def index
@@ -21,6 +23,8 @@ class BooksController < ApplicationController
         b.favorites.includes(:favorites).where(created_at: from...to).size <=>
         a.favorites.includes(:favorites).where(created_at: from...to).size
       }
+      # book一覧をPV数の多い順に並び替える。
+    @rank_books = Book.order(impressions_count: 'DESC')
   end
 
   def create
