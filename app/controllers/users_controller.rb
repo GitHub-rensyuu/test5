@@ -5,7 +5,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # @books = @user.books
     @book = Book.new
-    @books = Book.where(user_id: @user.id)
+    # @books = Book.where(user_id: @user.id)
+    @books = Book.where(user_id: @user.id).includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
   end
 
   def index
