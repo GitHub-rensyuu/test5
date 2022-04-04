@@ -32,9 +32,9 @@
                     starOff: "<%= asset_path('star-off.png') %>",
                     starOn: "<%= asset_path('star-on.png') %>",
                     starHalf: "<%= asset_path('star-half.png') %>",
-                    half: true,   # 星半分表示
-                    readOnly: true,   # 読み取り専用
-                    score: <%= @book.rate %>,   # 星評価の表示
+                    half: true,
+                    readOnly: true,
+                    score: "<%= @book.rate %>",
                   });
                 </script>
                 <%= @book.rate %>
