@@ -28,6 +28,7 @@
           <td id="favorite_buttons_<%= @book.id %>">
             <%= render "favorites/favorite", book: @book %>
           </td>
+          <td><p class="view-count">閲覧数: <%= @book.view_counts.count %></p></td>
 
         </tr>
       </table>
