@@ -5,11 +5,33 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @books = @user.books
     @book = Book.new
     @books = Book.where(user_id: @user.id)
     @following_users = @user.following_user
     @follower_users = @user.follower_user
+
+    # DM機能
+    # 現在ログインしているユーザーと、「チャットへ」を押されたユーザーをwhereで見つける
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    # 現在ログインしているユーザーでない場合に行う
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          # 現在ログインしているユーザーと、「チャットへ」を押されたユーザーが一緒のroomの場合
+          # 既存のidのroomを定義
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      # roomがない場合
+      unless @isRoom
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
 
   end
 
