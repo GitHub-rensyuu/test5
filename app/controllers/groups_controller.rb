@@ -10,6 +10,13 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
 
+  # グループ参加
+  def join
+    @group = Group.find(params[:group_id])
+    @group.users << current_user
+    redirect_to  groups_path
+  end
+
   def new
     @group = Group.new
   end
@@ -33,6 +40,13 @@ class GroupsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  # グループ削除
+  def destroy
+    @group = Group.find(params[:id])
+    @group.users.delete(current_user)
+    redirect_to groups_path
   end
 
   private
