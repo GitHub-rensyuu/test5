@@ -24,6 +24,12 @@
             <!--groupのオーナーなら編集ボタン表示-->
             <% if @group.owner_id == current_user.id %>
               <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %>
+
+              <!--< %= link_to 'Mail',group_new_mail_path(@group) %>-->
+              <%= link_to group_new_mail_path(@group) do %>
+                Mail<i class="fas fa-paper-plane"></i>
+              <% end %>
+              <!--< %= link_to 'Mail',group_new_mail_path(@group), class: "fas fa-paper-plane" %>-->
             <!--すでに参加しているメンバーなら脱退ボタン表示-->
             <% elsif @group.users.include?(current_user) %>
               <%= link_to 'Leave this group', group_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
@@ -31,7 +37,6 @@
               <%= link_to 'Join this group', group_join_path(@group), class: "btn btn-sm btn-success" %>
             <% end %>
           </td>
-        </tr>
       </table>
     </div>
   </div>
