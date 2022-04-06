@@ -28,6 +28,12 @@
               <i class="fas fa-sign-out-alt"></i> logout
             <% end %>
           </li>
+          <li>
+              <%=  form_tag(search_book_path, method: :get) do %>
+                <%= text_field_tag "keyword" %>
+                <%= submit_tag "検索", class: "btn btn-primary" %>
+              <% end %>
+          </li>
         <% else %>
           <li>
             <%= link_to root_path,class: 'nav-link text-light' do %>
