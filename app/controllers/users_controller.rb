@@ -8,8 +8,8 @@ class UsersController < ApplicationController
     @books = Book.where(user_id: @user.id)
     @today_book = @books.created_today
     @yesterday_book = @books.created_yesterday
-    @week_book = @books.created_week
-    @week2_book = @books.created_week2
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_last_week
   end
 
   def index
