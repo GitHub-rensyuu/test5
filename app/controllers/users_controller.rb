@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @last_week_book = @books.created_last_week
 
     @users_count = User.group_by_day(:created_at).size
-        # ユーザー登録数グラフ出力　gem groupdateをインストールしないと上記の記述は使用不可
+        # ユーザー登録数グラフ出力gem groupdateをインストールしないと上記の記述は使用不可
     @user_today = User.where(created_at: Date.today.all_day).count
         # ユーザーの1日の登録数
   end
@@ -37,6 +37,19 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user), notice: "You have updated user successfully."
     else
       render "edit"
+    end
+  end
+
+  #一部抜粋
+  def search
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    @book = Book.new
+    if params[:created_at] == ""
+      @search_book = "日付を選択してください"
+    else
+      create_at = params[:created_at]
+      @search_book = @books.where(['created_at LIKE ? ', "#{create_at}%"]).count
     end
   end
 
