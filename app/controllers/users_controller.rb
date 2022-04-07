@@ -3,13 +3,18 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @books = @user.books
     @book = Book.new
+    # @books = @user.books.page(params[:page]).reverse_order
     @books = Book.where(user_id: @user.id)
     @today_book = @books.created_today
     @yesterday_book = @books.created_yesterday
     @this_week_book = @books.created_this_week
     @last_week_book = @books.created_last_week
+
+    @users_count = User.group_by_day(:created_at).size
+        # ユーザー登録数グラフ出力　gem groupdateをインストールしないと上記の記述は使用不可
+    @user_today = User.where(created_at: Date.today.all_day).count
+        # ユーザーの1日の登録数
   end
 
   def index
